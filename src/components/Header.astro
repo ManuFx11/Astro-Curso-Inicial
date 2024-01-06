@@ -1,0 +1,30 @@
+---
+import { Counter } from './Counter';
+import HeaderButton from './HeaderButton.astro';
+---
+<header class="py-8 px-4 mx-auto max-w-xl lg:py-16 lg:px-6">
+   <div class="mx-auto text-center mb-8 lg:mb-16">
+     <h2 class="mb-4 text-5xl tracking-tight font-extrabold text-white">
+        SpaceX launches 
+     </h2>
+     <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">
+        All the information about SpaceX launches
+     </p><br>
+     <!-- por defecto astro no carga javascript tenemos que darle permiso para este componente con esta directiva  -->
+     <Counter transition:persist client:visible/>
+   </div>
+   <nav class="flex flex-col items-center justify-between w-full text-center md:flex-row">
+      <HeaderButton href="/">
+         <svg slot="antes" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-netflix" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 3l10 18h-4l-10 -18z" /><path d="M5 3v18h4v-10.5" /><path d="M19 21v-18h-4v10.5" /></svg>
+         Últimos Lanzamientos
+      </HeaderButton>
+      <HeaderButton href="/about">
+         <svg slot="antes" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-info-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 9h.01" /><path d="M11 12h1v4h1" /></svg>
+         Sobre el proyecto
+      </HeaderButton>
+      <HeaderButton href="oldest">
+         <svg slot="antes" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-week" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M8 14v4" /><path d="M12 14v4" /><path d="M16 14v4" /></svg>
+         Lo más viejos
+      </HeaderButton>
+   </nav>
+</header>

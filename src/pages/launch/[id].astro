@@ -1,0 +1,32 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getSpaceXData, getSpaceXDataByID } from "../../services/spacexdata";
+import Layout from "../../layouts/Layout.astro";
+import CardLaunch from "../../components/CardLaunch.astro";
+const {id} = Astro.params;
+//Hemos recuperado el id de la URL mediante Astro
+let launch = null;
+if(!id){
+    Astro.redirect('/');
+}else{
+     launch = await getSpaceXDataByID({id});
+}
+
+//export const prerender = false //server
+
+export async function getStaticPaths(){
+    //llamamos a una API externa para montar todas las ids que debes generar
+    const launches = await getSpaceXData();
+    return launches.map((launch) => ({
+        params : {id : launch.id}
+    }))
+}
+
+---
+<Layout title={`Lanzamiento ${id}`}>
+    <article>
+       <img src={launch?.links?.patch.small} alt={launch?.name}/><br>
+       <h2 class="text-4xl text-white font-bold">Launch #{launch?.flight_number}</h2><br>
+       <p class="text-white text-lg">{launch?.details}</p>
+    </article>
+</Layout>
